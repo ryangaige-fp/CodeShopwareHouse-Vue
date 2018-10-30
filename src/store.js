@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import db from "//localhost:5001/api";
+// import db from "//localhost:5001/api";
 
 let api = axios.create({
   baseURL: "//localhost:5001/api/orders",
@@ -10,7 +10,7 @@ let api = axios.create({
 
 Vue.use(Vuex);
 
-let store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
     orders: []
   },
@@ -39,8 +39,8 @@ let store = new Vuex.Store({
       api
         .collection("orders")
         .add(order)
-        .then(doc => {
-          console.log(doc);
+        .then(res => {
+          console.log(res);
           dispatch("getAllOrders");
         });
     },
@@ -49,6 +49,7 @@ let store = new Vuex.Store({
       api
         .put("orders/" + orders.id, order)
         .then(res => {
+          console.log(res);
           dispatch("getAllOrders");
         })
         .catch(err => {

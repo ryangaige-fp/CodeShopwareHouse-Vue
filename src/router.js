@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Orders from "@/component/Orders";
+import Orders from "@/components/Orders";
 
 Vue.use(Router);
 

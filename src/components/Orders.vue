@@ -7,12 +7,12 @@
             <div class="col-12">
                 <h3 class="header">Order</h3>
                 <form action="">
-                    <input type="number" name="Name" v-model="order.Name" placeholder="Name">
+                    <input type="text" name="Name" v-model="order.Name" placeholder="Name">
                     <input type="text" name="Description" v-model="order.description" placeholder="Description">
                     <input type="number" name="Quantity" v-model="order.Quantity" placeholder="quantity">
-                    <input type="datetime-local" name="CreatedAt" v-model="order.CreaterdAt" placeholder="levels">
+                    <input type="datetime-local" name="CreatedAt" v-model="order.CreaterdAt" placeholder="">
 
-                    <button type="button" @click="createOrder">Create</button>
+                    <button type="button" @click="create">Create</button>
 
                 </form>
             </div>
@@ -45,35 +45,34 @@
 
 <script>
     export default {
-        name: 'component',
+        name: 'orders',
         data() {
-            return {}
+            return {
+                order: {}
+            }
         },
         computed: {
             orders() {
-                return this.$store.state.orders.find(order => order.id == this.id)
+                return this.$store.state.orders
             }
 
         },
 
-        methods: {},
+        methods: {
 
-        createOrder() {
-            if (this.order.Name && this.order.Description && this.order.Quantity && this.order.CreatedAt) {
+            create() {
+
                 this.$store.dispatch("addOrder", this.order);
                 this.order = {};
 
-            } else {
-                alert("Bad Data!")
+
+            },
+
+            updateOrder() {
+                this.$store.dispatch("editOrder", this.editOrder);
             }
+
         },
-
-        updateOrder() {
-            this.$store.dispatch("editOrder", this.editOrder);
-        },
-
-
-
 
 
         components: {}
